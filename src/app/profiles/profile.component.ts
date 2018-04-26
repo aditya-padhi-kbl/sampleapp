@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
         });
 
         this.userId.valueChanges
-        .debounceTime(500)
+        .debounceTime(900)
         .subscribe(value => {
             this.fetchContent(this.user + '/' + this.userId.value);
         });
