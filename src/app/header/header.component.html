@@ -1,0 +1,16 @@
+<nav class="navbar navbar-default">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Brand</a>
+    </div>
+    
+    <div class="navbar-form navbar-right ">
+            
+        <form class="form-group">
+            <div class="form-group">
+                <input type="email" class="form-control" id="userDetails" [formControl]="user" placeholder="Enter User Detail Here">
+            </div>
+            <button type="button" class="btn btn-default" [disabled]="user.invalid" (click)="fetchUserInfo()">submit</button>
+            <button type="button" class="btn btn-sucess" (click)="createUser()"> Create new User</button>
+        </form>
+    </div>
+</nav>

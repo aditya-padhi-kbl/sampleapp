@@ -1,0 +1,35 @@
+<div class="row">
+
+    <span *ngIf="!transactionlist.length && !createUserMode">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="alert alert-info text-center" role="alert">
+                    <strong>User Name Missing</strong> Enter User Details and click on Submit/data do not exist
+                </div>
+            </div>
+        </div>
+    </span>
+
+        <span  *ngIf="transactionlist.length && !createUserMode">
+        <div class="form-inline">
+                <div class="form-group">
+                        <label for="searchById">Id</label>
+                        <input type="number" class="form-control" id="searchById" placeholder="Search By Id" [formControl]="userId">
+                    </div>
+        </div>
+            
+        <div class="col-sm-4" *ngFor="let transaction of transactionlist; let i = index;">
+            <app-card [transactionObject] = "transaction" [index]="i"></app-card>
+        </div>
+    </span>
+    
+    
+    <span *ngIf="createUserMode">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                    <app-card [(createMode)] = "createUserMode"></app-card>
+            </div>
+        
+          </div>
+    </span>
+</div>

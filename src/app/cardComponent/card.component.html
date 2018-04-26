@@ -1,0 +1,58 @@
+<div class="panel" [formGroup]="transactionForm" [ngClass]="{'panel-default': !updateTransactionSuccess, 'panel-success': updateTransactionSuccess}">
+    <div class="panel-heading">
+        <h3 class="panel-title" *ngIf="!createMode"> Transaction Id:- {{ transactionForm.get('id').value }}</h3>
+        <h3 class="panel-title" *ngIf="createMode"> Create New User </h3>
+    </div>
+    <div class="panel-body">
+            <span *ngIf="!editMode && !createMode">
+                    <div class="form-group">
+                        <label for="user{{index}}">User</label>
+                        <p class="form-control" id="user{{index}}" >{{ transactionForm.get('user').value }}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount{{index}}">Amount</label>
+                        <p class="form-control" id="amount{{index}}">{{ transactionForm.get('amount').value }}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="currency{{index}}">Currency</label>
+                        <p class="form-control" id="currency{{index}}">{{ transactionForm.get('currency').value }}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="txn_date{{index}}">Transaction Date</label>
+                        <p class="form-control" id="txn_date{{index}}">{{ transactionForm.get('txn_date').value }}</p>
+                    </div>
+                </span>
+        <span *ngIf="editMode || createMode">
+            <div class="form-group">
+                <label for="user{{index}}">User</label>
+                <input type="email" class="form-control" id="user{{index}}" placeholder="User" formControlName="user" [readonly]="!createMode">
+            </div>
+            <div class="form-group">
+                <label for="amount{{index}}">Amount</label>
+                <input type="number" class="form-control" id="amount{{index}}" placeholder="Amount" formControlName="amount">
+            </div>
+            <div class="form-group">
+                <label for="currency{{index}}">Currency</label>
+                <input type="text" class="form-control" id="currency{{index}}" placeholder="Currency" formControlName="currency">
+            </div>
+            <div class="form-group" *ngIf="editMode">
+                <label for="txn_date{{index}}">Transaction Date</label>
+                <input type="text" class="form-control" id="txn_date{{index}}" placeholder="Transaction Date" formControlName="txn_date" readonly>
+            </div>
+        </span>
+        
+    </div>
+
+    <div class="panel-footer">
+        <div class="row">
+            <button class="btn btn-success" (click)="createUser()" *ngIf="createMode" [disabled]="!transactionForm.valid"> Create</button>
+            <button class="btn btn-success" (click)="enableEdit()" *ngIf="!editMode && !createMode" > Edit</button>
+            <span *ngIf="editMode && !createMode">
+                    <button class="btn btn-success" (click)="editProp()" [disabled]="!transactionForm.valid"> Update</button>
+                    <button class="btn btn-default" (click)="removeProp()"> Remove</button>
+                    <button class="btn btn-default" (click)="cancelChanges()"> Cancel Changes</button>
+            </span>
+            
+        </div>
+    </div>
+  </div>
